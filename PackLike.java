@@ -45,7 +45,7 @@ public class PackLike {
 		playerY = 11;
 		Map[playerX][playerY] = '@'; // パックマンの初期位置指定
 		int score = 0; // 得点用
-		int clearPoint = 8200; // ゲームクリアポイント
+		int clearPoint = 8100; // ゲームクリアポイント
 		int input = 0; // 入力用
 
 		// 敵キャラ用
@@ -144,16 +144,15 @@ public class PackLike {
 
 				// 敵キャラ通ったとこにoを入れてるけど、oか空白か判断して影響しないようにしたい
 				//検証中
-								if (Map[enemyX][enemyY] == 'V') {
-//									if ((enemyG == 1 && enemyX == enemyX + 1 && Map[enemyX + 1][enemyY] == 'o')
-//											|| (enemyG == 2 && enemyX == enemyX - 1 && Map[enemyX - 1][enemyY] == 'o')
-//											|| (enemyG == 3 && enemyY == enemyY + 1 && Map[enemyX][enemyY + 1] == 'o')
-//											|| (enemyG == 4 && enemyY == enemyY - 1 && Map[enemyX][enemyY - 1] == 'o')) {
-										Map[enemyX][enemyY] = 'o';
-									} else {
-										Map[enemyX][enemyY] = ' ';
-									}
-
+				if (Map[enemyX][enemyY] == 'V') {
+					//									if ((enemyG == 1 && enemyX == enemyX + 1 && Map[enemyX + 1][enemyY] == 'o')
+					//											|| (enemyG == 2 && enemyX == enemyX - 1 && Map[enemyX - 1][enemyY] == 'o')
+					//											|| (enemyG == 3 && enemyY == enemyY + 1 && Map[enemyX][enemyY + 1] == 'o')
+					//											|| (enemyG == 4 && enemyY == enemyY - 1 && Map[enemyX][enemyY - 1] == 'o')) {
+					Map[enemyX][enemyY] = 'o';
+				} else {
+					Map[enemyX][enemyY] = ' ';
+				}
 
 				System.out.println("1:上　2:下　3:左　4:右");// 1:上 2:下 3:左 4:右
 				try {
@@ -181,17 +180,21 @@ public class PackLike {
 						break;
 					}
 
-					//Vが通った後に影響を出したくない　移動先がoならo スペースならスペース 動かなくなった
+					//Vが通った後に影響を出したくない　移動先がoならo スペースならスペース
 					// 敵キャラ用分岐 手直し版
 
-					if (enemyG == 1 && Map[enemyX - 1][enemyY] == 'o') {
+					if (enemyG == 1 && Map[enemyX-1][enemyY] == 'o') {
 						Map[enemyX][enemyY] = 'o';
 						enemyX--;
 						break;
-					} else if (enemyG == 1 && Map[enemyX - 1][enemyY] == ' ') {
+					} else if (enemyG == 1 && Map[enemyX-1][enemyY] == ' ') {
 						Map[enemyX][enemyY] = ' ';
 						enemyX--;
 						break;
+
+					} else if (enemyG == 1 && Map[enemyX - 1][enemyY] == '#') {
+//						break;
+
 					} else if (enemyG == 2 && Map[enemyX + 1][enemyY] == 'o') {
 						Map[enemyX][enemyY] = 'o';
 						enemyX++;
@@ -200,6 +203,10 @@ public class PackLike {
 						Map[enemyX][enemyY] = ' ';
 						enemyX++;
 						break;
+
+					} else if (enemyG == 2 && Map[enemyX + 1][enemyY] == '#') {
+//						break;
+
 					} else if (enemyG == 3 && Map[enemyX][enemyY - 1] == 'o') {
 						Map[enemyX][enemyY] = 'o';
 						enemyY--;
@@ -208,6 +215,10 @@ public class PackLike {
 						Map[enemyX][enemyY] = ' ';
 						enemyY--;
 						break;
+
+					} else if (enemyG == 3 && Map[enemyX ][enemyY -1] == '#') {
+//						break;
+
 					} else if (enemyG == 4 && Map[enemyX][enemyY + 1] == 'o') {
 						Map[enemyX][enemyY] = 'o';
 						enemyY++;
@@ -216,6 +227,8 @@ public class PackLike {
 						Map[enemyX][enemyY] = ' ';
 						enemyY++;
 						break;
+					} else if (enemyG == 4 && Map[enemyX] [enemyY+1] == '#') {
+//						break;
 					}
 				}
 
