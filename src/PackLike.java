@@ -39,15 +39,13 @@ public class PackLike {
 		// TODO:パワーボール作って取ったら敵を倒せる
 		// TODO:敵キャラ通ったとこにoを入れてるけど、oか空白か判断して影響しないようにしたい
 
-		// TODO:敵が外の空白通路に行って配列外に行ったらエラー起こす対処
-
 		int playerX = 0; // 座標指定用にx,y用意
 		int playerY = 0;
 		playerX = 5;
 		playerY = 11;
 		Map[playerX][playerY] = '@'; // パックマンの初期位置指定
 		int score = 0; // 得点用
-		int clearPoint = 10000; // ゲームクリアポイント
+		int clearPoint = 8200; // ゲームクリアポイント
 		int input = 0; // 入力用
 
 		// 敵キャラ用
@@ -143,41 +141,19 @@ public class PackLike {
 				if (Map[playerX][playerY] == '@') {
 					Map[playerX][playerY] = ' ';
 				}
-				//敵の通ったあとがoの設定用
-//				if (Map[enemyX][enemyY] == 'V')  {
-//					Map[playerX][playerY] = 'o';
-//				}
 
 				// 敵キャラ通ったとこにoを入れてるけど、oか空白か判断して影響しないようにしたい
 				//検証中
-				if (Map[enemyX][enemyY] == 'V') {
-					if ((enemyG == 1 && enemyX == enemyX + 1 && Map[enemyX+1][enemyY] == 'o')
-							|| (enemyG == 2 && enemyX == enemyX - 1 && Map[enemyX-1][enemyY] == 'o')
-							|| (enemyG == 3 && enemyY == enemyY + 1 && Map[enemyX][enemyY+1] == 'o')
-							|| (enemyG == 4 && enemyY == enemyY - 1 && Map[enemyX][enemyY-1] == 'o')) {
-						Map[enemyX][enemyY] = 'o';
-					} else {
-						Map[enemyX][enemyY] = ' ';
-					}
-				}
-				//				else if (Map[enemyX][enemyY] == 'V' && (enemyG == 1 && Map[enemyX-1][enemyY] == ' ') || (enemyG == 2 && Map[enemyX+1][enemyY] == ' ')
-				//				||  (enemyG == 3 && Map[enemyX][enemyY-1] == ' ') || (enemyG == 4 && Map[enemyX][enemyY+1] == ' ')) {
-				//					Map[enemyX][enemyY] = ' ';
-				//				}
+								if (Map[enemyX][enemyY] == 'V') {
+//									if ((enemyG == 1 && enemyX == enemyX + 1 && Map[enemyX + 1][enemyY] == 'o')
+//											|| (enemyG == 2 && enemyX == enemyX - 1 && Map[enemyX - 1][enemyY] == 'o')
+//											|| (enemyG == 3 && enemyY == enemyY + 1 && Map[enemyX][enemyY + 1] == 'o')
+//											|| (enemyG == 4 && enemyY == enemyY - 1 && Map[enemyX][enemyY - 1] == 'o')) {
+										Map[enemyX][enemyY] = 'o';
+									} else {
+										Map[enemyX][enemyY] = ' ';
+									}
 
-				// 敵キャラ通ったとこにoを入れてるけど、oか空白か判断して影響しないようにしたい
-				//				if (Map[enemyX][enemyY] == 'V') {
-				//					for(int i =0; i<Map.length; i++) {
-				//						for(int j =0; j<Map.length; j++) {
-				//							if(Map[i][j] == 'o') {
-				//								Map[enemyX][enemyY] = 'o';
-				//							}else if(Map[i][j] == ' ') {
-				//								Map[enemyX][enemyY] = ' ';
-				//							}
-				//						}
-				//
-				//						}
-				//					}
 
 				System.out.println("1:上　2:下　3:左　4:右");// 1:上 2:下 3:左 4:右
 				try {
@@ -191,30 +167,57 @@ public class PackLike {
 				while ((Map[enemyX][enemyY] == 'o' || Map[enemyX][enemyY] == ' ')) {
 					// 敵キャラ用　ループ内で毎回ランダムセットしないと敵が動かない
 					enemyG = rnd.nextInt(4) + 1; // 1~4のランダム
-					//										enemyG = 4; // 1~4のランダム
-					// 敵キャラ用分岐 手直し版
-					if (enemyG == 1 && (Map[enemyX - 1][enemyY] == 'o' || Map[enemyX - 1][enemyY] == ' ')) { // 上にいく
-						enemyX--;
+					//					enemyG = 1;	//テスト用
+
+					//敵キャラを外に出したくない とりあえず外に出ないようにしてる
+					if (enemyG == 4 && enemyX == 5 && enemyY == 20) {
+						enemyY--;
+						System.out.println("右");
 						break;
 
-					} else if (enemyG == 2 && (Map[enemyX + 1][enemyY] == 'o' || Map[enemyX + 1][enemyY] == ' ')) { // 下に行く
+					} else if (enemyG == 3 && enemyX == 5 && enemyY == 2) {
+						enemyY++;
+						System.out.println("左");
+						break;
+					}
+
+					//Vが通った後に影響を出したくない　移動先がoならo スペースならスペース 動かなくなった
+					// 敵キャラ用分岐 手直し版
+
+					if (enemyG == 1 && Map[enemyX - 1][enemyY] == 'o') {
+						Map[enemyX][enemyY] = 'o';
+						enemyX--;
+						break;
+					} else if (enemyG == 1 && Map[enemyX - 1][enemyY] == ' ') {
+						Map[enemyX][enemyY] = ' ';
+						enemyX--;
+						break;
+					} else if (enemyG == 2 && Map[enemyX + 1][enemyY] == 'o') {
+						Map[enemyX][enemyY] = 'o';
 						enemyX++;
 						break;
-					} else if (enemyG == 3 && (Map[enemyX][enemyY - 1] == 'o' || Map[enemyX][enemyY - 1] == ' ')) { // 左行く
+					} else if (enemyG == 2 && Map[enemyX + 1][enemyY] == ' ') {
+						Map[enemyX][enemyY] = ' ';
+						enemyX++;
+						break;
+					} else if (enemyG == 3 && Map[enemyX][enemyY - 1] == 'o') {
+						Map[enemyX][enemyY] = 'o';
 						enemyY--;
 						break;
-					} else if (enemyG == 4 && (Map[enemyX][enemyY + 1] == 'o' || Map[enemyX][enemyY + 1] == ' ')) { // 右に行く
+					} else if (enemyG == 3 && Map[enemyX][enemyY - 1] == ' ') {
+						Map[enemyX][enemyY] = ' ';
+						enemyY--;
+						break;
+					} else if (enemyG == 4 && Map[enemyX][enemyY + 1] == 'o') {
+						Map[enemyX][enemyY] = 'o';
+						enemyY++;
+						break;
+					} else if (enemyG == 4 && Map[enemyX][enemyY + 1] == ' ') {
+						Map[enemyX][enemyY] = ' ';
 						enemyY++;
 						break;
 					}
 				}
-
-				//敵キャラを外に出したくない試し中
-				//			if (enemyG == 4 && enemyX == 5 && enemyY == 21) {
-				//				enemyX ++;
-				//				enemyY--;
-				//				System.out.println("★test");
-				//			}
 
 				//ワープ通路。もしプレイヤー座標が5,1になったら5,21座標にプレイヤーを代入
 				//if (input == 3 && Map[playerX][playerY] == Map[5][0]) { ←この書き方だとうまく座標判定出来なかった。
