@@ -88,24 +88,22 @@ public class PackLike {
 				break;
 			}
 
-			//敵に当たったらゲームオーバー
-			System.out.println("player：" + input);
-			System.out.println("enemyG：" + enemyG);
+			
+// 			System.out.println("player：" + input);	//テスト用
+// 			System.out.println("enemyG：" + enemyG);	//テスト用
 
 			//角で隣接したらアウトなるバグ対策
 			//playerが上か下かつ敵が左か右または、playerが左か右かつ敵が上か下
 			if (((input == 1 || input == 2) && (enemyG == 3 || enemyG == 4)) ||
 					((input == 3 || input == 4) && (enemyG == 1 || enemyG == 2))) {
 
-				System.out.println("テスと");
-
 				if (Map[playerX][playerY] == 'V') {
-					System.out.println("GAME OVER1");
-					// 確認用
-					System.out.println("player" + playerX + ":" + playerY);
-					System.out.println("enemy" + enemyX + ":" + enemyY);
-					System.out.println("player" + input);
-					System.out.println("enemyG" + enemyG);
+					System.out.println("GAME OVER");
+// 					// 確認用
+// 					System.out.println("player" + playerX + ":" + playerY);
+// 					System.out.println("enemy" + enemyX + ":" + enemyY);
+// 					System.out.println("player" + input);
+// 					System.out.println("enemyG" + enemyG);
 					break;
 				}
 
@@ -120,12 +118,12 @@ public class PackLike {
 						|| (input == 4 && enemyG == 3 && (enemyX == playerX && enemyY == playerY - 1)))
 
 				{
-					System.out.println("GAME OVER2");
+					System.out.println("GAME OVER");
 					// 確認用
-					System.out.println("player" + playerX + ":" + playerY);
-					System.out.println("enemy" + enemyX + ":" + enemyY);
-					System.out.println("player" + input);
-					System.out.println("enemyG" + enemyG);
+// 					System.out.println("player" + playerX + ":" + playerY);
+// 					System.out.println("enemy" + enemyX + ":" + enemyY);
+// 					System.out.println("player" + input);
+// 					System.out.println("enemyG" + enemyG);
 					Map[playerX][playerY] = ' ';
 					break;
 				}
@@ -134,8 +132,8 @@ public class PackLike {
 			while (true) { // 入力受けて壁とか判定して座標とスコア更新する
 
 				//				// 確認用
-				System.out.println("player" + playerX + ":" + playerY);
-				System.out.println("enemy" + enemyX + ":" + enemyY);
+// 				System.out.println("player" + playerX + ":" + playerY);
+// 				System.out.println("enemy" + enemyX + ":" + enemyY);
 
 				// 通ったとこにはスペースを入れる
 				if (Map[playerX][playerY] == '@') {
@@ -145,10 +143,6 @@ public class PackLike {
 				// 敵キャラ通ったとこにoを入れてるけど、oか空白か判断して影響しないようにしたい
 				//検証中
 				if (Map[enemyX][enemyY] == 'V') {
-					//									if ((enemyG == 1 && enemyX == enemyX + 1 && Map[enemyX + 1][enemyY] == 'o')
-					//											|| (enemyG == 2 && enemyX == enemyX - 1 && Map[enemyX - 1][enemyY] == 'o')
-					//											|| (enemyG == 3 && enemyY == enemyY + 1 && Map[enemyX][enemyY + 1] == 'o')
-					//											|| (enemyG == 4 && enemyY == enemyY - 1 && Map[enemyX][enemyY - 1] == 'o')) {
 					Map[enemyX][enemyY] = 'o';
 				} else {
 					Map[enemyX][enemyY] = ' ';
@@ -166,7 +160,7 @@ public class PackLike {
 				while ((Map[enemyX][enemyY] == 'o' || Map[enemyX][enemyY] == ' ')) {
 					// 敵キャラ用　ループ内で毎回ランダムセットしないと敵が動かない
 					enemyG = rnd.nextInt(4) + 1; // 1~4のランダム
-					//					enemyG = 1;	//テスト用
+					// enemyG = 1;	//テスト用
 
 					//敵キャラを外に出したくない とりあえず外に出ないようにしてる
 					if (enemyG == 4 && enemyX == 5 && enemyY == 20) {
