@@ -46,7 +46,7 @@ public class Dungeon {
 				break;
 			}
 
-
+			int C = 0;
 			while (true) {//上下左右を入力し壁じゃなければx.y座標に+-する
 
 				System.out.println("---------------------");
@@ -55,8 +55,13 @@ public class Dungeon {
 				System.out.println("---------------------");
 				System.out.println("1:上　2:下　3:左　4:右");
 				System.out.println("---------------------");
-				Scanner sc = new Scanner(System.in);
-				int C = sc.nextInt();
+				try {
+					Scanner sc = new Scanner(System.in);
+					C = sc.nextInt();
+				} catch (InputMismatchException e) {
+					System.out.println("半角数字を入力してください");
+				}
+				
 				if (C == 1 && map[x - 1][y] != '＃') {
 					x--;
 					break;//このbreak地点で1個目のwhileに処理が戻る
