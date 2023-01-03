@@ -1,0 +1,11 @@
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\bin\Debug\GoalChap3AddTax.exe.config
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\bin\Debug\GoalChap3AddTax.exe
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\bin\Debug\GoalChap3AddTax.pdb
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.csproj.AssemblyReference.cache
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.csproj.SuggestedBindingRedirects.cache
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.Form1.resources
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.Properties.Resources.resources
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.csproj.GenerateResource.cache
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.csproj.CoreCompileInputs.cache
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.exe
+C:\Users\bounc\source\repos\GoalChap3AddTax\GoalChap3AddTax\obj\Debug\GoalChap3AddTax.pdb
